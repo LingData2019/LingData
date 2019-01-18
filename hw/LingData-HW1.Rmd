@@ -2,7 +2,7 @@
 title: "Homework 1"
 subtitle: "Linguistic Data: Quantitative Analysis and Visualisation"
 author: "Olga Lyashevskaya, George Moroz, Ilya Schurov and Alla Tambovtseva"
-date: "Deadline: 24 January, 23:59"
+date: "Deadline: 27 January, 23:59"
 output: pdf_document
 ---
 The solutions should be submitted via Google forms. 
@@ -41,24 +41,24 @@ b. Indicate the interval where the median of this sample can lie. Explain your a
 c. How the histogram will change if we add an element $7$ to the sample? Explain your answer.
 
 ### Problem 3
-a. Look at histograms of two samples:
+a. Look at histograms of two samples. They illustrate the distribution of normalized average reaction time to frequent words (in ms) in two groups of people.
 
 ```{r, echo=FALSE, fig.height=3}
 set.seed(1234)
-sample1 <- rnorm(100, 4, 7)
-sample2 <- rnorm(100, 11, 2)
-hist(sample1, col="lightblue", xlim=c(-30, 30))
+sample1 <- rnorm(100, 500, 50)
+sample2 <- rnorm(100, 500, 20)
+hist(sample1, col="lightblue", xlim=c(100, 900))
 ```
 
 ```{r, echo=FALSE, fig.height=3}
-hist(sample2, col="lightgreen", xlim=c(-30, 30))
+hist(sample2, col="lightgreen", xlim=c(100, 900))
 ```
 
 Which of the samples has a larger variance? Explain your answer.
 
 \newpage
 
-b. Look at histograms of two samples:
+b. Look at histograms of two samples.
 
 ```{r, echo=FALSE, fig.height=8}
 set.seed(12)
@@ -73,19 +73,19 @@ Which of the samples has a larger variance? Explain your answer.
 
 ### Problem 4
 
-Look at the histogram below and answer the questions.
+Below is the histogram of the number of mistakes students made in a writing paper in English exam. Look at the histogram and answer the questions.
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.height=4}
 set.seed(2)
-w <- rbeta(1000, 2, 7)*100
-hist(w, breaks=60, col= "deepskyblue", ylim=c(0, 40))
+mistakes <- rbeta(1000, 2, 7)*100
+hist(mistakes, breaks=60, col= "deepskyblue", ylim=c(0, 40))
 ```
 
-a. Is it true that the $50$% of values in `w` exceed $35$? Explain your answer.
+a. Is it true that the $50$% of students made more than $35$ mistakes? Explain your answer.
 
-b. Is it true that most values in `w` do not exceed $10$? Explain your answer.
+b. Is it true that most students made no more than $10$ mistakes? Explain your answer.
 
-c. Which of the following values is closer to be the median of `w`: $10$, $20$, $30$, $40$? Explain your answer.
+c. Which of the following values is closer to be the median of `mistakes`: $10$, $20$, $30$, $40$? Explain your answer.
 
 ## Part 2
 
