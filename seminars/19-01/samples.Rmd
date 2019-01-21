@@ -1,6 +1,8 @@
 ---
 title: "R Notebook"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
 ### Seminar 2
@@ -8,7 +10,7 @@ output: html_notebook
 File `sizes.txt` contains a list of sizes (in bytes) of all Russian Wikipedia articles on artists (retrieved 18.01.2019). We can read it into vector with `scan` function.
 
 ```{r}
-sizes <- scan("artists-sizes.txt")
+sizes <- scan("http://math-info.hse.ru/f/2018-19/ling-data/artists-sizes.txt")
 ```
 
 Let's look at some descriptive statistics:
@@ -24,6 +26,7 @@ hist(sizes)
 ```
 
 This gives us little clues about the distribution. Let's increase number of bins.
+
 ```{r}
 hist(sizes, breaks = 100)
 ```
