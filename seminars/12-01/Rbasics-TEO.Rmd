@@ -7,7 +7,7 @@ output:
 ---
 ## Basics of R: variables, vectors and descriptive statistics
 
-### R as a calculator
+### R as calculator
 
 Let's look at very basic calculations in R.
 
