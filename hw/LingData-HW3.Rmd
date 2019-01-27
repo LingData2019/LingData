@@ -1,0 +1,55 @@
+# HW 3
+
+## 1. Exact binomial test
+
+Use the same dataset we used in class. 
+The dataset "The last words in verses" (https://raw.githubusercontent.com/LingData2019/LingData/master/data/poetry_last_in_lines.csv) contains a sample of lines taken from the RNC Corpus of Russian Poetry. We took only one line per author to make our observations as independent as possible.
+* Decade - decade of creation: 1820s, 1920s 
+* RhymedNwords - the number of words in the rhyming position (usually 1, but 2 in _вина бы_ 'wine (that's what I would like to get)' rhyming with _слабый_ 'weak')
+* RhymedNsyl - the number of syllables in the rhyming position 
+* UPoS - part of speech of the last word 
+* LineText - a sampled verse
+* Author - author of the text
+
+Given the estimated probability to observe a preposition only in 0.1% cases in the last position in the poetic line (according to Lyashevskaya et al. 2019, data calculated for the whole corpus), will it be surprising to see as much occurrences of prepositions as we see in a sample of verses written in the 1920s? Filter out the relevant data points, calculate the number of prepositions observed in the sample and the sample size, and use an exact binomial test to calculate p-value.
+### 1.1 p-value = 
+
+Do the same for the sample of verses written in the 1820s.
+### 1.2
+
+
+## 2. Inter-rater agreement
+
+In this fictitious experiment, you ask people to assess a certain utterance, whether some feature (interpretation, use of linguistic entity, etc.) is present or absent. Each person assesses only one utterance, and each utterance is independently assessed by two people. If both raters agree that the feature is present, you label the utterance with 1, and as 0 in all other cases.
+1) Think of possible linguistic problem for such an experiment, describe it briefly below.
+### 2.1 
+
+2) Suggest annotation agreement level (say, 95% or 63%, depending you intuition about the complexity and nature of the task). Formulate your null hypothesis about the agreement level below.
+### 2.2 
+
+3) Think of the number of datapoints (i.e. utterances) you will evaluate (_n_).
+### 2.3 
+
+4) Write down the R code that would generate a (fictitious) dataset for your experiment. The dataset _df_ consists of n points of observation (see 3), and each data point is labeled as 1 or 0. Use sampling to create this dataset (see supplementary code below).
+### 2.4
+
+5) Use an exact binomial test to see whether you can or cannot reject your null hypothesis. Write R code below:
+### 2.5
+
+6) What type of data do the dataset _df_ present (think in terms of vectors, dataframes, continuous, categorical, etc. types of data)?
+### 2.6
+
+
+## Supplementary reading and R code
+
+## Use of binomial test in lingiistic research
+* Gries, Stefan Th. "Phonological similarity in multi-word units." Cognitive Linguistics 22.3 (2011): 491-510. http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.186.7412&rep=rep1&type=pdf
+Stefan Gries proves that alliteration is observed in multi-word expressions more often than in general.
+
+* Harald Bayen (2008: 51-52) evaluates the probability of observing exactly one occurrence of the word _hare_ in the corpus sample of 1 mln words given its estimated frequency of 8.23 words per million according to the SELEX frequency database.
+
+
+## R code for sampling, in both old-shool and tidyverse style. 
+```{r sampling}
+
+```
