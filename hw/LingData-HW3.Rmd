@@ -3,24 +3,39 @@
 ## 1. Exact binomial test
 
 Use the same dataset we used in class. 
-The dataset "The last words in verses" (https://raw.githubusercontent.com/LingData2019/LingData/master/data/poetry_last_in_lines.csv) contains a sample of lines taken from the RNC Corpus of Russian Poetry. We took only one line per author to make our observations as independent as possible.
-* Decade - decade of creation: 1820s, 1920s 
-* RhymedNwords - the number of words in the rhyming position (usually 1, but 2 in _вина бы_ 'wine (that's what I would like to get)' rhyming with _слабый_ 'weak')
-* RhymedNsyl - the number of syllables in the rhyming position 
-* UPoS - part of speech of the last word 
-* LineText - a sampled verse
-* Author - author of the text
+The dataset [“The last words in verses”](https://raw.githubusercontent.com/LingData2019/LingData/master/data/poetry_last_in_lines.csv) contains a sample of lines taken from the RNC Corpus of Russian Poetry. We took only one line per author to make our observations as independent as possible.
 
-Given the estimated probability to observe a preposition only in 0.1% cases in the last position in the poetic line (according to Lyashevskaya et al. 2019, data calculated for the whole corpus), will it be surprising to see as much occurrences of prepositions as we see in a sample of verses written in the 1920s? Filter out the relevant data points, calculate the number of prepositions observed in the sample and the sample size, and use an exact binomial test to calculate p-value.
-### 1.1 p-value = 
+- Decade — decade of creation: 1820s, 1920s.
+- RhymedNwords — the number of words in the rhyming position (usually 1, but 2 in _вина бы_ 'wine (that's what I would like to get)' rhyming with _слабый_ 'weak')
+- RhymedNsyl — the number of syllables in the rhyming position. 
+- UPoS — part of speech of the last word.
+- LineText — a sampled verse.
+- Author — author of the text.
 
-Do the same for the sample of verses written in the 1820s.
-### 1.2
+The estimated probability to observe a preposition in the last position in the poetic line is equal to 0.1% according to Lyashevskaya et al. 2019 (data calculated for the whole corpus). Consider verses written in 1920s. Can we decide, according to the data given, that for verses written in 1920s the prepositions where used as a last word of a line more often or less often than in 0.1% of cases?
+
+We can reformulate this question in terms of coin-tossing model discussed at the lecture. Consider every item in our dataset as a result of a tossing of a coin, heads corresponding to prepositions, tails corresponding to any other part of speech. Our question now becomes the following: can we conclude that the probability of getting head for this coin is not equal to 0.1%? If we can, is it more than 0.1% or less than 0.1%?
+
+### 1.1 State hypothesis
+What is our null hypothesis $H_0$ and what is the alternative hypothesis $H_1$?
+
+### 1.2 Analyse data
+
+Filter out the relevant data points, calculate the number of prepositions observed in the sample and the sample size, and use an exact binomial test to calculate p-value. Provide p-value obtained as well as a code used.
+
+### 1.3 Interpret results
+
+Give your interpretation of obtained p-value. Answer the initial question: Can we decide, according to the data given, that for verses written in 1920s the prepositions where used as a last word of a line more often or less often than in 0.1% of cases?
+
+### 1.4 Verses in 1820s
+
+Repeat 1.2 and 1.3 for verses written in the 1820s.
 
 
 ## 2. Inter-rater agreement
 
 In this fictitious experiment, you ask people to assess a certain utterance, whether some feature (interpretation, use of linguistic entity, etc.) is present or absent. Each person assesses only one utterance, and each utterance is independently assessed by two people. If both raters agree that the feature is present, you label the utterance with 1, and as 0 in all other cases.
+
 1) Think of possible linguistic problem for such an experiment, describe it briefly below.
 ### 2.1 
 
