@@ -2,50 +2,66 @@
 
 ## 1. Exact binomial test
 
-Use the same dataset we used in class. 
-The dataset [“The last words in verses”](https://raw.githubusercontent.com/LingData2019/LingData/master/data/poetry_last_in_lines.csv) contains a sample of lines taken from the RNC Corpus of Russian Poetry. We took only one line per author to make our observations as independent as possible.
+The null hypothesis is that $p=0$ (i.e. no success is possible). In a dataset, there is only one success out of 1 000 000 observations. Will you accept or reject the null hypotheses? 
 
+
+
+## 2. Position of nouns in verses
+
+(We have already used this dataset in class.)
+The dataset [“The last words in verses”](https://raw.githubusercontent.com/LingData2019/LingData/master/data/poetry_last_in_lines.csv) contains a sample of lines taken from the RNC Corpus of Russian Poetry. Actually, there are two samples comprising the texts written in the 1820s and 1920s. We took only one line per author to keep our observations as independent as possible. 
+
+Variables:
 - Decade — decade of creation: 1820s, 1920s.
-- RhymedNwords — the number of words in the rhyming position (usually 1, but 2 in _вина бы_ 'wine (that's what I would like to get)' rhyming with _слабый_ 'weak')
+- RhymedNwords — the number of words in the rhyming position (usually one word, but there are two words in cases such as _вина бы_ 'I would like to get) wine' (which is rhymed with _жабы_ 'toad', see http://russian-poetry.ru/Poem.php?PoemId=18261))
 - RhymedNsyl — the number of syllables in the rhyming position. 
 - UPoS — part of speech of the last word.
 - LineText — a sampled verse.
-- Author — author of the text.
+- Author — the author of the text.
 
 The estimated probability to observe a preposition in the last position in the poetic line is equal to 0.1% according to Lyashevskaya et al. 2019 (data calculated for the whole corpus). Consider verses written in 1920s. Can we decide, according to the data given, that for verses written in 1920s the prepositions where used as a last word of a line more often or less often than in 0.1% of cases?
 
 We can reformulate this question in terms of coin-tossing model discussed at the lecture. Consider every item in our dataset as a result of a tossing of a coin, heads corresponding to prepositions, tails corresponding to any other part of speech. Our question now becomes the following: can we conclude that the probability of getting head for this coin is not equal to 0.1%? If we can, is it more than 0.1% or less than 0.1%?
 
-### 1.1 State hypothesis
-What is our null hypothesis $H_0$ and what is the alternative hypothesis $H_1$?
+### 2.1 State the hypothesis
+What is your null hypothesis $H_0$ and what is the alternative hypothesis $H_1$?
 
-### 1.2 Analyse data
+### 2.2 Analyse data
 
 Filter out the relevant data points, calculate the number of prepositions observed in the sample and the sample size, and use an exact binomial test to calculate p-value. Provide p-value obtained as well as a code used.
 
-### 1.3 Interpret results
+### 2.3 Interpret results
 
 Give your interpretation of obtained p-value. Answer the initial question: Can we decide, according to the data given, that for verses written in 1920s the prepositions where used as a last word of a line more often or less often than in 0.1% of cases?
 
-### 1.4 Verses in 1820s
+### 2.4 Verses in 1820s
 
-Repeat 1.2 and 1.3 for verses written in the 1820s.
+Repeat 2.2 and 2.3 for verses written in the 1820s.
 
 
-## 2. Inter-rater agreement
 
-In this fictitious experiment, you ask people to assess a certain utterance, whether some feature (interpretation, use of linguistic entity, etc.) is present or absent. Each person assesses only one utterance, and each utterance is independently assessed by two people. If both raters agree that the feature is present, you label the utterance with 1, and as 0 in all other cases.
+## 3. Do people agree in their judgements regarding language? 
 
-1) Think of possible linguistic problem for such an experiment, describe it briefly below.
-### 2.1 
+In this fictitious experiment, you ask people to assess a certain utterance, whether some feature (interpretation, use of linguistic entity, etc.) is present or absent. Each person assesses only one utterance, and each utterance is independently assessed by two people. If both raters agree that the feature is present, you label the utterance with 1; you label it as 0 in all other cases.
+Just to give you a hint, here is our example in which we ask people to assess if the use of _for example_ is correct with regards to word order:  
+```
+@linguist: Is it possible to say in English:
+    Its influence can be seen in, _for example_, the reforms of the court service in the United Kingdom.
+@rater1: yes
+@rater2: yes
+@linguist: Ok, then I will mark this utterance as 1.
+```
 
-2) Suggest annotation agreement level (say, 95% or 63%, depending you intuition about the complexity and nature of the task). Formulate your null hypothesis about the agreement level below.
-### 2.2 
+1) Think of (another) interesting linguistic problem for such an experiment, describe it briefly below.
+### 3.1 
+
+2) Suggest inter-rater agreement level (i. e. to what extent people agree, say, 95% or 63%, depending you intuition about the complexity and nature of the task). Formulate your null hypothesis about the agreement level below.
+### 3.2 
 
 3) Think of the number of datapoints (i.e. utterances) you will evaluate (_n_).
-### 2.3 
+### 3.3 
 
-4) Write down the R code that would generate a (fictitious) dataset for your experiment. The dataset _df_ consists of n points of observation (see 3), and each data point is labeled as 1 or 0. Use sampling to create this dataset (see supplementary code below).
+4) Write down the R code that would generate a (fictitious) dataset for your experiment. The dataset _df_ consists of n points of observation (see 3.3), and each data point is labeled as 1 or 0. Use sampling to create this dataset (see supplementary code below).
 ### 2.4
 
 5) Use an exact binomial test to see whether you can or cannot reject your null hypothesis. Write R code below:
@@ -53,6 +69,7 @@ In this fictitious experiment, you ask people to assess a certain utterance, whe
 
 6) What type of data do the dataset _df_ present (think in terms of vectors, dataframes, continuous, categorical, etc. types of data)?
 ### 2.6
+
 
 
 ## Supplementary reading and R code
