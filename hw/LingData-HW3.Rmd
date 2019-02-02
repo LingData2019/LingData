@@ -13,7 +13,7 @@ The null hypothesis is that $p=0$ (i.e. no success is possible). In a dataset, t
 
 
 
-## 2. Position of nouns in verses
+## 2. Position of verbs in verses
 
 (We have already used this dataset in class.)
 The dataset [“The last words in verses”](https://raw.githubusercontent.com/LingData2019/LingData/master/data/poetry_last_in_lines.csv) contains a sample of lines taken from the RNC Corpus of Russian Poetry. Actually, there are two samples comprising the texts written in the 1820s and 1920s. We took only one line per author to keep our observations as independent as possible. 
@@ -60,7 +60,7 @@ Use an exact binomial test to calculate p-value.
 
 ### 2.3.2 Interpret results
 
-Give your interpretation of obtained p-value. Answer the initial question: Can we decide, according to the data given, that for verses written in 1920s the prepositions where used as a last word of a line more often or less often than in 0.1% of cases?
+Give your interpretation of obtained p-value. Answer the initial question: Can we decide that in verses written in 1920s, verbs are used in the rhyming posision more often or less often than expected?
 ```
 
 ```
@@ -68,7 +68,7 @@ Give your interpretation of obtained p-value. Answer the initial question: Can w
 ### 2.4 Verses in 1820s
 
 Repeat 2.3 for verses written in the 1820s.
-```{r 1920}
+```{r 1820s}
 
 ```
 
