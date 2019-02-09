@@ -1,0 +1,38 @@
+---
+title: "ANOVA"
+output: html_notebook
+---
+
+Load data on Icelandic:
+
+```{r}
+phono <- read.csv("http://math-info.hse.ru/f/2018-19/ling-data/icelandic.csv")
+```
+
+Look at groups of consonants:
+
+```{r}
+table(phono$cons1)
+```
+
+Create a boxplot for vowel duration for each group of consonants:
+
+```{r}
+boxplot(phono$vowel.dur ~ phono$cons1) 
+```
+
+Perform ANOVA:
+
+```{r}
+res <- aov(phono$vowel.dur ~ phono$cons1)
+res
+```
+
+More informative summary:
+
+```{r}
+# H0: there are no difference in population means by groups
+summary(res)
+```
+
+
