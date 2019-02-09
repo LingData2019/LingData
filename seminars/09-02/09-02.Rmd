@@ -20,6 +20,7 @@ library(DescTools)
 ### Confidence intervals for proportions
 
 First, let us consider an abstract example so as to look at different effects connected with confidence intervals (sample size effect and confidence level effect). Suppose we tossed a coin 20 times and got 4 heads. 
+
 ```{r}
 nheads <- 4 # number of heads
 n1 <- 20  # total number of tosses
@@ -38,7 +39,7 @@ ci.95 <- BinomCI(nheads, n1)
 ci.95[3] - ci.95[2]
 ```
 
-Increase the number of tosses (number of heads remain the same):
+Increase the number of tosses (number of heads remains the same):
 
 ```{r}
 n2 <- 40 # now 40 tosses
@@ -52,6 +53,31 @@ Keep the number of tosses equal to 20, but increase the confidence level:
 ci.99 <- BinomCI(nheads, n1, conf.level = 0.99)
 ci.99[3] - ci.99[2] # it extended
 ```
+
+Now let's try to generate a population of ones and zeroes (recall our previous classes) and find the proportion of ones in it. Then take 1000 samples of size 100, calculate confidence intervals for proportion of ones in each sample and count how many intervals contain a population proportion.
+
+```{r}
+population <- sample(0:1, 10000, replace = TRUE)
+p0 <- mean(population)
+
+n <- 100
+samples <- 1000
+dat <- matrix(sample(c(0, 1), 
+                     n * samples, 
+                     replace=TRUE), ncol=n, byrow=TRUE)
+
+cis <- BinomCI(rowSums(dat), n)
+colnames(cis) <- c("est", "lower", "upper")
+
+head(cis[,"lower"])
+head(cis[,"upper"])
+
+sum(cis[,2] <= p0 & cis[,3] >= p0)
+sum(cis[,2] <= p0 & cis[,3] >= p0)/1000
+```
+
+
+### Confidence intervals: real data
 
 Now let's proceed to real data and work with *Verses* data set. 
 
@@ -106,7 +132,7 @@ lineplot.CI(data = phono,
 
 * If two CI's for a population parameter (proportion, mean, median, etc) do not overlap, it means that true values of population parameters are significantly different.
 
-* If two CI's for a population parameter overlap, true values of population parameters are likely to coincide (to be equal to each other), but **not** necessarily do so. For example, if two confidence intervals for means overlap, we cannot make a definite conclusion, more accurate testing is required (t-test). So, in general, comparison of confidence intervals (with the same confidence level, of course) is **not** equivalent to hypotheses testing.
+* If two CI's for a population parameter overlap, true values of population parameters can (to be equal to each other), but **not** necessarily do so. For example, if two confidence intervals for means overlap, we cannot make a definite conclusion, more accurate testing is required (t-test). So, in general, comparison of confidence intervals (with the same confidence level, of course) is **not** equivalent to hypotheses testing.
 
 Consider a case when two CI's for means overlap, but population means are significantly different. Let's select only cases with aspirated consonants and compare the average vowel duration for round and unrounded vowels.
 
