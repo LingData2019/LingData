@@ -1,9 +1,11 @@
 ---
-title: "Linguistic Data: Quantitative Analysis and Visualisation"
-subtitle: "Confidence intervals in R"
+title: 'Linguistic Data: Quantitative Analysis and Visualisation'
 author: "Ilya Schurov, Olga Lyashevskaya, George Moroz, Alla Tambovtseva"
 date: "09 February 2018"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
+subtitle: Confidence intervals in R
 ---
 
 Install library `DescTools` and load it:
@@ -114,7 +116,7 @@ Now let's proceed to real data and work with *Verses* data set.
 
 ```{r}
 verses <- read.csv("https://raw.githubusercontent.com/LingData2019/LingData/master/data/poetry_last_in_lines.csv", sep = "\t")
-str(verses) # recall which variables are there
+#str(verses) # recall which variables are there
 ```
 
 Calculate a confidence interval for the proportion of nouns at the end of lines:
