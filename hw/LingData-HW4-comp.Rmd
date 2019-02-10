@@ -36,11 +36,23 @@ For brevity, below we will refer to variables `LogDurationA` and `LogDurationW` 
 
 Draw histograms for word duration and segment duration values.
 
+```{r}
+
+```
+
 ### 1.2 Word duration and segment duration in slow and fast condition
 
 Group the data by speaking condition (`Cond`) and estimate whether there is a difference in the word duration with the help of boxplot. Do the same for the segment duration.
 
+```{r}
+
+```
+
 It is reasonable to expect that both durations are shorter for fast speaking condition than for slow speaking condition? Can the graph you plotted confirm this? What kind of assertions can you make from the graph? E.g. can you assert something like "sample/population mean/median of word duration for fast speaking condition is shorter/longer than in slow speaking condition"?
+
+```
+
+```
 
 ### 2.1 Student's t-test
 
@@ -54,13 +66,25 @@ Now we want to check statistical significance of difference between
 
 First of all, state the null hypothesis and the alternative you consider.
 
+```
+
+```
+
 #### 2.1.2 Application of test
 
 Apply `t.test` to check the hypothesis.
 
+```{r}
+
+```
+
 #### 2.1.3 Interpretation
 
 Interpret results of the t-test performed. Report p-values obtained. Can you confirm that there is a difference between word duration in fast condition and word duration in slow condition in the population? The same question for the segment duration.
+
+```
+
+```
 
 ### 2.2 Confidence intervals
 #### 2.2.1 Explicit formula
@@ -73,6 +97,9 @@ $$
 
 Use it to find 95% confidence interval for a population mean of word durations.
 
+```{r}
+
+```
 
 #### 2.2.2 Function `MeanCI`
 
@@ -80,13 +107,70 @@ Use function `MeanCI` from package `DescTools` (you have to install and load it 
 
 (The result will be a little bit different compared to the result of the previous section due to the fact that the formula above is only approximation and `MeanCI` uses a more precise formula. However, for our data the difference is very small.)
 
+```{r}
+
+```
+
 #### 2.2.3 Function `t.test`
 
 You can also use function `t.test` for one sample to obtain the confidence interval for a mean. Apply `t.test` to the same variable as in 2.2.1 and extract the confidence interval from the output. Does it coincide with the results of sections 2.2.1 or 2.2.2?
 
+```{r}
+
+```
+
 #### 2.2.4 Different confidence level
 
 Use function `MeanCI` to find 99% confidence interval for the same variable as in 2.2.1. Is it wider or narrower than 95% CI?
+
+```{r}
+
+```
+
+
+### 2.3 ANOVA
+
+Let us take observations obtained in `slow` conditions and look at three groups with Exponent _en_, _-n_, _-t_, respectively. 
+We will use a one-way independent ANOVA to see if there is significantly more variation between the groups than there is within the groups.
+
+#### 2.3.1 Hypothesis
+
+First of all, state the null hypothesis and the alternative you consider. (Note that the alternative hypothesis of ANOVA states that at least two groups are different).
+
+```
+
+```
+
+#### 2.3.2. aov()
+
+Use the summary of aov() to perform an ANOVA.
+
+```{r}
+dat.fast <- dat[dat$Cond == "fast",]
+summary(aov(LogDurationW ~ Exponent, data = dat.fast))
+```
+
+#### 2.3.3 Interpreting the ANOVA results
+
+Report p-values obtained. Can you conclude that variation between the groups is significantly larger than that within the groups?
+
+#### 2.3.4 Post-hoc testing
+
+Since an ANOVA provides only information on the overall significance of the differences between groups, you can perform an additional test (called post-hoc test in experimental studies) to find out which pairwise differences are significant. Perform the Tukey Honest Significant Difference test, using the `TukeyHSD()` function. It requires an aov() object and a variable that defines the groups.
+For each pair of groups, the test provides the differences between the means (diff), their 95% confidence intervals (lwr and upr), and the p-value of the difference. If p-value is less than \alpha (usually 0.05), then the difference is significant.
+
+```{r}
+# TukeyHSD(aov(....), "Exponent")
+```
+
+#### 2.3.5 Reporting the results
+
+Analyse p-values provided by the Tukey test to see if there is any pair of groups in which the difference is not significant. Write down you general conclusions for 2.3.1-2.3.4. Report the full name of the ANOVA (one-way independent ANOVA), it's p-value, the name of post-hoc test as well as it's results: p-value and the difference between the means (with CI) for those pair of groups that you want to report.
+
+```
+
+
+```
 
 ### 3.1 Summary in a `dplyr` style
 
