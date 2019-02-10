@@ -146,13 +146,16 @@ First of all, state the null hypothesis and the alternative you consider. (Note 
 Use the summary of aov() to perform an ANOVA.
 
 ```{r}
-dat.fast <- dat[dat$Cond == "fast",]
-summary(aov(LogDurationW ~ Exponent, data = dat.fast))
+
 ```
 
 #### 2.3.3 Interpreting the ANOVA results
 
 Report p-values obtained. Can you conclude that variation between the groups is significantly larger than that within the groups?
+
+```
+
+```
 
 #### 2.3.4 Post-hoc testing
 
@@ -180,3 +183,6 @@ require(tidyverse)
 
 Group you data by exponent and condition and calculate a mean, a median, and a standard deviation of word duration. You have to use `dplyr` (`tidyverse`) for these operations.
 
+```{r}
+
+```
