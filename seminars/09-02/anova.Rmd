@@ -1,6 +1,11 @@
 ---
-title: "ANOVA"
-output: html_notebook
+title: 'Linguistic Data: Quantitative Analysis and Visualisation'
+author: "Ilya Schurov, Olga Lyashevskaya, George Moroz, Alla Tambovtseva"
+date: "09 February 2018"
+output:
+  pdf_document: default
+  html_notebook: default
+subtitle: 'ANOVA: analysis of variance'
 ---
 
 Load data on Icelandic:
@@ -35,4 +40,4 @@ More informative summary:
 summary(res)
 ```
 
-
+**Question:** judging by the output above, can we conclude that average vowel duration differ significantly in different groups of consonants?
