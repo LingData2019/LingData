@@ -130,7 +130,7 @@ Use function `MeanCI` to find 99% confidence interval for the same variable as i
 
 ### 2.3 ANOVA
 
-We will consider only observations obtained in `slow` conditions in this section. Let us look at three groups with Exponent _en_, _-n_, _-t_, respectively. 
+We will consider only observations obtained in `slow` conditions in this section. Let us look at three groups with Exponent _-en_, _-n_, _-t_, respectively. 
 
 We will use a one-way independent ANOVA to see are there any statistically
 significant difference between segment durations in these three groups.
