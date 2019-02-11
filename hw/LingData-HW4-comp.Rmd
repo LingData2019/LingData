@@ -130,8 +130,10 @@ Use function `MeanCI` to find 99% confidence interval for the same variable as i
 
 ### 2.3 ANOVA
 
-Let us take observations obtained in `slow` conditions and look at three groups with Exponent _en_, _-n_, _-t_, respectively. 
-We will use a one-way independent ANOVA to see if there is significantly more variation between the groups than there is within the groups.
+We will consider only observations obtained in `slow` conditions in this section. Let us look at three groups with Exponent _en_, _-n_, _-t_, respectively. 
+
+We will use a one-way independent ANOVA to see are there any statistically
+significant difference between segment durations in these three groups.
 
 #### 2.3.1 Hypothesis
 
@@ -151,24 +153,53 @@ Use the summary of aov() to perform an ANOVA.
 
 #### 2.3.3 Interpreting the ANOVA results
 
-Report p-values obtained. Can you conclude that variation between the groups is significantly larger than that within the groups?
+Let us use 3% significance level instead of usual 5% to make a decision. Can you
+conclude that there is significant difference (i.e. difference in the
+corresponding population means) between these three groups at 3% significance
+level?
 
 ```
 
 ```
 
-#### 2.3.4 Post-hoc testing
+#### 2.3.4 Pairwise t-test
+Use two-sample t-test to compare segment duration for expontents _-t_ and _-en_.
+Can you conclude, according to the results of t-test, that there is significant
+difference between these two groups at 3% significance level?
 
-Since an ANOVA provides only information on the overall significance of the differences between groups, you can perform an additional test (called post-hoc test in experimental studies) to find out which pairwise differences are significant. Perform the Tukey Honest Significant Difference test, using the `TukeyHSD()` function. It requires an aov() object and a variable that defines the groups.
-For each pair of groups, the test provides the differences between the means (diff), their 95% confidence intervals (lwr and upr), and the p-value of the difference. If p-value is less than \alpha (usually 0.05), then the difference is significant.
+How can you explain a contradiction (if any) of this the outcome with outcome of
+2.3.3?
+
+#### 2.3.5 ANOVA: Word durations
+Repeat 2.3.1, 2.3.2 and 2.3.3 for word durations instead of segment durations.
+
+#### 2.3.6 Post-hoc testing
+
+Since an ANOVA provides only information on the overall significance of the
+differences between groups, you can perform an additional test (called post-hoc
+test in experimental studies) to find out which pairwise differences are
+significant. Perform the Tukey Honest Significant Difference test for the
+results of 2.3.3 and 2.3.5 using the `TukeyHSD()` function. 
+
+It requires an `aov()` object and a variable that defines the groups.
+For each pair of groups, the test provides the differences between the means (diff), their confidence intervals (lwr and upr), and the p-value of the difference. If p-value is less than the significance level, then the difference is significant.
+
+As we are using 3% significance level, use 97% confidence interval by passing
+option `conf.level` to `TukeyHSD`. (By default, it's 95% confidence interval
+that corresponds to 5% significance level.)
+
+Analyse p-values provided by the Tukey test to see if there is any pair of groups in which the difference is not significant at 3% significance level. 
 
 ```{r}
 # TukeyHSD(aov(....), "Exponent")
 ```
 
-#### 2.3.5 Reporting the results
+#### 2.3.7 Comparison with pairwise t-test
+Compare p-value for the difference between segment durations for  _-t_ and _-en_ Exponents, given by `TukeyHSD`, with the result of 2.3.4. How can you explain the difference between these p-values?
 
-Analyse p-values provided by the Tukey test to see if there is any pair of groups in which the difference is not significant. Write down you general conclusions for 2.3.1-2.3.4. Report the full name of the ANOVA (one-way independent ANOVA), it's p-value, the name of post-hoc test as well as it's results: p-value and the difference between the means (with CI) for those pair of groups that you want to report.
+#### 2.3.8 Reporting the results
+
+Write down you general conclusions for 2.3.1-2.3.7. Report the full name of the ANOVA (one-way independent ANOVA), its p-value, the name of post-hoc test (if used) as well as its results: p-value and the difference between the means (with CI) for those pair of groups that you want to report.
 
 ```
 
