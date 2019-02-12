@@ -2,13 +2,8 @@
 title: "Homework 4"
 author: "Ilya Schurov, Olga Lyashevskaya, George Moroz, Alla Tambovtseva"
 date: 'Deadline: 19 February, 23:59'
-header-includes:
-  - \usepackage{hyperref}
-  - \hypersetup{
-    colorlinks = true,
-    urlcolor = blue}
 output:
-  pdf_document: default
+  html_document
 ---
 
 ### Frequent words, their acoustic duration and co-articulation effects
