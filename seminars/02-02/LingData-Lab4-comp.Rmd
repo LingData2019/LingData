@@ -2,8 +2,10 @@
 title: 'Linguistic Data: Quantitative Analysis and Visualisation'
 subtitle: Lab on a Student's t-test
 output:
-  word_document: default
+  html_document:
+    df_print: paged
   pdf_document: default
+  word_document: default
 ---
 ### Aspiration and vowel duration in Icelandic 
 
@@ -98,7 +100,7 @@ t.test(asp$vowel.dur, nasp$vowel.dur, alternative = "less")
 ```
 
 ### Density plots
-```{r}
+```{r, message=FALSE, warning=FALSE}
 require(tidyverse)
 require(dplyr)
 ```
@@ -114,7 +116,7 @@ df %>%
 
 Density plots can be thought of as plots of smoothed histograms.
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(ggplot2)
 df %>% 
   ggplot(aes(vowel.dur, fill = aspiration, color = aspiration))+

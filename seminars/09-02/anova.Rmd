@@ -3,8 +3,10 @@ title: 'Linguistic Data: Quantitative Analysis and Visualisation'
 author: "Ilya Schurov, Olga Lyashevskaya, George Moroz, Alla Tambovtseva"
 date: "09 February 2018"
 output:
-  pdf_document: default
+  html_document:
+    df_print: paged
   html_notebook: default
+  pdf_document: default
 subtitle: 'ANOVA: analysis of variance'
 ---
 

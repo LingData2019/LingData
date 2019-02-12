@@ -53,7 +53,7 @@ What is your null hypothesis $H_0$ and what is the alternative hypothesis $H_1$?
 
 ### 2.3 Analyse data
 
-Read the dataset [“The last words in verses”](https://raw.githubusercontent.com/LingData2019/LingData/master/data/poetry_last_in_lines.csv). Filter out the relevant observations from 1820s, calculate the number of verbs observed in the sample, and the sample size. 
+Read the dataset [“The last words in verses”](https://raw.githubusercontent.com/LingData2019/LingData/master/data/poetry_last_in_lines.csv). Filter out the relevant observations from 1920s, calculate the number of verbs observed in the sample, and the sample size. 
 ```{r read-poetry-dataset}
 
 ```
