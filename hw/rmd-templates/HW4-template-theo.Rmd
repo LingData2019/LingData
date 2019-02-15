@@ -74,7 +74,7 @@ Interpret results of the t-test. Report p-values obtained. Can you confirm that 
 
 Recall the formula for 95% confidence interval discussed at the lecture:
 $$
-\mathrm{CI} = \left[\bar{x} - 1.96\times \frac{\mathop{\mathrm{sd}}(x)}{n},\ \bar{x} + 1.96\times \frac{\mathop{\mathrm{sd}}(x)}{n}\right].
+\mathrm{CI} = \left[\bar{x} - 1.96\times \frac{\mathop{\mathrm{sd}}(x)}{\sqrt{n}},\ \bar{x} + 1.96\times \frac{\mathop{\mathrm{sd}}(x)}{\sqrt{n}}\right].
 $$
 Use it to find 95% confidence interval for population mean of word durations.
 
