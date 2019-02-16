@@ -533,21 +533,12 @@ homo %>%
   geom_point()+
   labs(title = "length of [s] vs. length of vowels",
        subtitle = "based on 14 speakers of Cantonese",
-       caption = "data from [Hau 2007]")
+       caption = "data from [Hau 2007]",
+       x = "duration of [s] in ms",
+       y = "vowel duration in ms")
 ```
 
-##### 6.1.6 Scaterplot: axis
-```{r}
-homo %>%
-  ggplot(aes(s.duration.ms, vowel.duration.ms)) +
-  geom_point()+
-  xlab("duration of [s] in ms")+
-  ylab("vowel duration in ms")
-```
-
-#####
-
-##### 6.1.7 Log scales
+##### 6.1.6 Log scales
 ![](https://pbs.twimg.com/media/CTxg970WwAApE98.png)
 
 Lets use the frequency dictionary for Russian
@@ -565,7 +556,7 @@ freq %>%
   scale_y_log10()
 ```
 
-##### 6.1.8 Scaterplot: rug
+##### 6.1.7 Scaterplot: rug
 ```{r}
 homo %>%
   ggplot(aes(s.duration.ms, vowel.duration.ms, color = orientation)) +
@@ -573,7 +564,7 @@ homo %>%
   geom_rug()
 ```
 
-##### 6.1.9 Scaterplot: lines
+##### 6.1.8 Scaterplot: lines
 ```{r}
 homo %>%
   ggplot(aes(s.duration.ms, vowel.duration.ms)) +
@@ -594,7 +585,7 @@ homo %>%
   geom_vline(xintercept = 60, color = "blue")
 ```
 
-##### 6.1.10 Scaterplot: annotate
+##### 6.1.9 Scaterplot: annotate
 Функция `annotate` добавляет `geom` к графику.
 ```{r}
 homo %>%
@@ -608,7 +599,7 @@ homo %>%
 
 ##### Task 6
 In dataset `diamonds` calculate mean value of the variable `price` for each `cut` and visualise it using argument `shape = 5`. 
-```{r}
+```{r, echo = FALSE}
 diamonds %>% 
   group_by(cut) %>% 
   mutate(mean = mean(price)) %>% 
@@ -666,7 +657,7 @@ homo %>%
 
 In dataset `diamonds` calculate mean, maximum and minimum value of the variable `price` for each `color` and visualise it using arguments `color = "blue"` for maximum value and `color = "red"` for minimum value and automatic coloring for mean value. 
 
-```{r}
+```{r, echo = FALSE}
 diamonds %>% 
   group_by(cut) %>% 
   mutate(mean = mean(price),
@@ -730,7 +721,7 @@ homo %>%
 ##### Task 8
 
 Create a stacked histogram for the variable `price` and color by variable `cut`
-```{r}
+```{r, echo = FALSE}
 diamonds %>% 
   ggplot(aes(price, fill = cut))+
   geom_histogram()
@@ -739,7 +730,7 @@ diamonds %>%
 ##### Task 9
 
 Create a side-to-side histogram for the variable `price` and color by variable `cut` using argument `position = "dodge"`.
-```{r}
+```{r, echo = FALSE}
 diamonds %>% 
   ggplot(aes(price, fill = cut))+
   geom_histogram(position = "dodge")
@@ -771,7 +762,7 @@ homo %>%
 ##### Task 10
 
 Create a density plot for the variable `price` and color by variable `cut`. Use argument `alpha = 0.5`.
-```{r}
+```{r, echo = FALSE}
 diamonds %>% 
   ggplot(aes(price, fill = cut))+
   geom_density(alpha = 0.5)
@@ -835,7 +826,7 @@ homo %>%
 ##### Task 11
 
 Reproduce the graph:
-```{r}
+```{r, echo = FALSE}
 diamonds %>% 
   ggplot(aes(carat, price, color = clarity))+
   geom_point()+
