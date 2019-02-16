@@ -283,7 +283,7 @@ homo %>%
 
 #### Task 4
 
-Calculate the mean value and standard deviation for each color. In the form fill the values for color with lowest mean value
+Calculate the mean value and standard deviation of `price` variable for each color. In the form fill the values for color with lowest mean value
 ```{r, include=FALSE}
 diamonds %>% 
   group_by(color) %>% 
