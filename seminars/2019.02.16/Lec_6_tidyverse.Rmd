@@ -140,7 +140,7 @@ sort(sqrt(abs(sin(1:22))), decreasing = TRUE)
 #### Task 1
 All folowing tasks will be performed with dataset `diamonds` from `ggplot2`. This dataset containing the prices and other attributes of almost 54 000 diamonds.
 
-How many dimonds in the `diamonds` dataset have `depth` greater than 65 and price greater or equal than 15 000?
+How many diamonds in the `diamonds` dataset have `depth` greater than 65 and price greater or equal than 15 000?
 
 ```{r, include=FALSE}
 diamonds %>% 
@@ -470,7 +470,7 @@ datasaurus %>%
 ```
 
 
-#### 6.1 Scaterplot
+#### 6.1 Scatterplot
 
 * ggplot2
 ```{r}
@@ -486,7 +486,7 @@ homo %>%
   geom_point(aes(color = orientation))
 ```
 
-##### 6.1.1 Scaterplot: color
+##### 6.1.1 Scatterplot: color
 
 ```{r}
 homo %>%
@@ -495,7 +495,7 @@ homo %>%
   geom_point()
 ```
 
-##### 6.1.2 Scaterplot: shape
+##### 6.1.2 Scatterplot: shape
 
 ```{r}
 homo %>%
@@ -504,7 +504,7 @@ homo %>%
   geom_point(color = "green")
 ```
 
-##### 6.1.3 Scaterplot: size
+##### 6.1.3 Scatterplot: size
 
 ```{r}
 homo %>%
@@ -513,7 +513,7 @@ homo %>%
   geom_point()
 ```
 
-##### 6.1.4 Scaterplot: text
+##### 6.1.4 Scatterplot: text
 ```{r}
 homo %>%
   mutate(label = ifelse(orientation == "homo","⚣", "⚤")) %>% 
@@ -526,7 +526,7 @@ homo %>%
   geom_text()
 ```
 
-##### 6.1.5 Scaterplot: title
+##### 6.1.5 Scatterplot: title
 ```{r}
 homo %>%
   ggplot(aes(s.duration.ms, vowel.duration.ms)) +
@@ -556,7 +556,7 @@ freq %>%
   scale_y_log10()
 ```
 
-##### 6.1.7 Scaterplot: rug
+##### 6.1.7 Scatterplot: rug
 ```{r}
 homo %>%
   ggplot(aes(s.duration.ms, vowel.duration.ms, color = orientation)) +
@@ -564,7 +564,7 @@ homo %>%
   geom_rug()
 ```
 
-##### 6.1.8 Scaterplot: lines
+##### 6.1.8 Scatterplot: lines
 ```{r}
 homo %>%
   ggplot(aes(s.duration.ms, vowel.duration.ms)) +
@@ -585,7 +585,7 @@ homo %>%
   geom_vline(xintercept = 60, color = "blue")
 ```
 
-##### 6.1.9 Scaterplot: annotate
+##### 6.1.9 Scatterplot: annotate
 Функция `annotate` добавляет `geom` к графику.
 ```{r}
 homo %>%
@@ -672,7 +672,7 @@ diamonds %>%
 
 #### 6.1-3 Preliminary summary: two variables
 
-* scaterplot: two quantitative varibles
+* Scatterplot: two quantitative varibles
 * barplot: nominal varible and one number
 * boxplot: nominal varible and quantitative varibles
 * jittered points or sized points: two nominal varibles
