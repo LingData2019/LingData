@@ -52,7 +52,7 @@ knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 
 
 ### 1. Introduction
-The [_tidyverse_](https://blog.rstudio.org/2016/09/15/tidyverse-1-0-0/) is a set of packages:
+[_tidyverse_](https://blog.rstudio.org/2016/09/15/tidyverse-1-0-0/) is a set of packages:
 
 * `dplyr`, for data manipulation
 * `ggplot2`, for data visualisation
@@ -545,6 +545,7 @@ homo %>%
   ylab("vowel duration in ms")
 ```
 
+#####
 
 ##### 6.1.7 Log scales
 ![](https://pbs.twimg.com/media/CTxg970WwAApE98.png)
@@ -605,6 +606,16 @@ homo %>%
            label = "Who is that?\n Outlier?")
 ```
 
+##### Task 6
+In dataset `diamonds` calculate mean value of the variable `price` for each `cut` and visualise it using argument `shape = 5`. 
+```{r}
+diamonds %>% 
+  group_by(cut) %>% 
+  mutate(mean = mean(price)) %>% 
+  ggplot(aes(cut, mean, size = mean))+
+  geom_point(shape = 5, color = "blue")
+```
+
 #### 6.2 Barplots
 There are two possible situations:
 
@@ -649,6 +660,24 @@ homo %>%
   geom_violin() +
   geom_jitter()
 ```
+
+
+##### Task 7
+
+In dataset `diamonds` calculate mean, maximum and minimum value of the variable `price` for each `color` and visualise it using arguments `color = "blue"` for maximum value and `color = "red"` for minimum value and automatic coloring for mean value. 
+
+```{r}
+diamonds %>% 
+  group_by(cut) %>% 
+  mutate(mean = mean(price),
+         min = min(price),
+         max = max(price)) %>% 
+  ggplot(aes(cut, mean, color = cut))+
+  geom_col(aes(y = max), color = "blue")+
+  geom_col()+
+  geom_col(aes(y = min), color = "red")
+```
+
 
 #### 6.1-3 Preliminary summary: two variables
 
@@ -698,6 +727,24 @@ homo %>%
   geom_histogram(fill = "lightblue")
 ```
 
+##### Task 8
+
+Create a stacked histogram for the variable `price` and color by variable `cut`
+```{r}
+diamonds %>% 
+  ggplot(aes(price, fill = cut))+
+  geom_histogram()
+```
+
+##### Task 9
+
+Create a side-to-side histogram for the variable `price` and color by variable `cut` using argument `position = "dodge"`.
+```{r}
+diamonds %>% 
+  ggplot(aes(price, fill = cut))+
+  geom_histogram(position = "dodge")
+```
+
 #### 6.5 Density plot
 ```{r}
 homo %>%
@@ -719,6 +766,15 @@ library(ggridges)
 homo %>%
   ggplot(aes(s.duration.ms, orientation, fill = orientation)) +
   geom_density_ridges()
+```
+
+##### Task 10
+
+Create a density plot for the variable `price` and color by variable `cut`. Use argument `alpha = 0.5`.
+```{r}
+diamonds %>% 
+  ggplot(aes(price, fill = cut))+
+  geom_density(alpha = 0.5)
 ```
 
 
@@ -775,6 +831,17 @@ homo %>%
   facet_wrap(~orientation)+
   theme_bw()
 ```
+
+##### Task 11
+
+Reproduce the graph:
+```{r}
+diamonds %>% 
+  ggplot(aes(carat, price, color = clarity))+
+  geom_point()+
+  facet_grid(cut~color, scales = "free")
+```
+
 
 <script>
 function validateFormOne() {
