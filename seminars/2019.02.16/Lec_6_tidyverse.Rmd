@@ -7,12 +7,12 @@ output:
   html_document:
       theme: spacelab
       highlight: pygments
+      df_print: paged
       toc: yes
       toc_position: right
       toc_depth: 4
       toc_float: yes
       smooth_scroll: false
-      output_folder: docs
 ---
 
 ```{r setup, include=FALSE}
@@ -54,26 +54,30 @@ knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 ### 1. Introduction
 The [_tidyverse_](https://blog.rstudio.org/2016/09/15/tidyverse-1-0-0/) is a set of packages:
 
-* _dplyr_, for data manipulation
-* _ggplot2_, for data visualisation
-* _tidyr_, for data tidying
-* _readr_, for data import
-* _purrr_, for functional programming
-* _tibble_, for tibbles, a modern re-imagining of data frames
+* `dplyr`, for data manipulation
+* `ggplot2`, for data visualisation
+* `tidyr`, for data tidying
+* `readr`, for data import
+* `stringr`, for working with strings 
+* `forcats`, for working with factors
+* `purrr`, for functional programming
+* `tibble`, for tibbles, a modern re-imagining of data frames
 
-Install _tidyverse_ package using _install.packages("tidyverse")_.
+Install `tidyverse` package using `install.packages("tidyverse")`.
 
 ```{r, message = TRUE}
 library(tidyverse)
+theme_set(theme_bw()) # set bright theme
 ```
 
 <div class="parallax"></div>
-### 2. tible
+
+### 2. tibble
 
 ```{r, eval=FALSE}
 head(iris)
 as_tibble(iris)
-data_frame(id = 1:12,
+tibble(id = 1:12,
            letters = month.name)
 ```
 
@@ -91,6 +95,8 @@ head(df)
 df <- read_delim("https://goo.gl/33r2Ut", delim = "\t")
 head(df)
 ```
+
+There is also a package `readxl` for reading files from .xls and .xlsx files (even from different sheets).
 
 <div class="parallax"></div>
 
@@ -128,8 +134,24 @@ sort(sqrt(abs(sin(1:22))), decreasing = TRUE)
   sin() %>% 
   abs() %>% 
   sqrt() %>% 
-  sort(., decreasing = TRUE) # зачем здесь точка?
+  sort(., decreasing = TRUE) # dot here stands for an argument where pipe get obtained data
 ```
+
+#### Task 1
+All folowing tasks will be performed with dataset `diamonds` from `ggplot2`. This dataset containing the prices and other attributes of almost 54 000 diamonds.
+
+How many dimonds in the `diamonds` dataset have `depth` greater than 65 and price greater or equal than 15 000?
+
+```{r, include=FALSE}
+diamonds %>% 
+  filter(depth > 65, price >= 15000)
+# 27
+```
+
+<form name="FormOne" onsubmit="return validateFormOne()" method="post">
+<input type="text" name="answerOne">
+<input type="submit" value="check">
+</form><br>
 
 <div class="parallax2"></div>
 
@@ -139,6 +161,21 @@ sort(sqrt(abs(sin(1:22))), decreasing = TRUE)
 homo %>%
   slice(3:7)
 ```
+
+#### Task 2
+How many diamonds have the cheapest price in the observation range from 2000 to 8000?
+
+```{r, include=FALSE}
+diamonds %>% 
+  slice(2000:8000) %>% 
+  filter(price == min(price))
+# 2
+```
+
+<form name="FormTwo" onsubmit="return validateFormTwo()" method="post">
+<input type="text" name="answerTwo">
+<input type="submit" value="check">
+</form><br>
 
 <div class="parallax2"></div>
 
@@ -175,7 +212,26 @@ homo %>%
   distinct(orientation)
 homo %>%
   distinct(orientation, age > 20)
+homo %>%
+  count(orientation)
+homo %>%
+  count(orientation, age > 20)
 ```
+
+#### Task 3
+How many diamonds with `Fair` and `Good` cut and color `G`?
+
+```{r, include=FALSE}
+diamonds %>% 
+  filter(color == "G") %>% 
+  count(cut)
+# 1185
+```
+
+<form name="FormThree" onsubmit="return validateFormThree()" method="post">
+<input type="text" name="answerThree">
+<input type="submit" value="check">
+</form><br>
 
 <div class="parallax2"></div>
 
@@ -216,18 +272,50 @@ homo %>%
   count(orientation, age > 20)
 ```
 
+If you want to add aditional column instead of get summary by each group it is possible to use `mutate()` with `group_by()`:
+
+```{r}
+homo %>%
+  group_by(orientation) %>% 
+  mutate(mean_by_orientation = mean(s.duration.ms))
+```
+
+
+#### Task 4
+
+Calculate the mean value and standard deviation for each color. In the form fill the values for color with lowest mean value
+```{r, include=FALSE}
+diamonds %>% 
+  group_by(color) %>% 
+  summarise(mean = mean(price),
+            sd = sd(price)) %>% 
+  filter(mean == min(mean))
+# mean = 3077, sd = 3344
+```
+
+Mean:
+<form name="FormFour" onsubmit="return validateFormFour()" method="post">
+<input type="text" name="answerFour">
+<input type="submit" value="check">
+</form><br>
+
+Standard deviation:
+<form name="FormFive" onsubmit="return validateFormFive()" method="post">
+<input type="text" name="answerFive">
+<input type="submit" value="check">
+</form><br>
 <div class="parallax2"></div>
 
 #### 4.8 `dplyr::.._join()`
 
 ```{r}
-languages <- data_frame(
+languages <- tibble(
   languages = c("Selkup", "French", "Chukchi", "Kashubian"),
   countries = c("Russia", "France", "Russia", "Poland"),
   iso = c("sel", "fra", "ckt", "pol")
   )
 languages
-country_population <- data_frame(
+country_population <- tibble(
   countries = c("Russia", "Poland", "Finland"),
   population_mln = c(143, 38, 5))
 country_population
@@ -302,6 +390,22 @@ df.long %>%
 df.short
 ```
 
+#### Task 5
+Calculate mean `price`  value for all combinations of `color` and `cut` variables and create a table in a short format. What is the value of the first column and the first row?
+
+```{r, include=FALSE}
+diamonds %>% 
+  group_by(color, cut) %>% 
+  summarise(mean = mean(price)) %>% 
+  spread(cut, mean)
+# 4291
+```
+
+<form name="FormSix" onsubmit="return validateFormSix()" method="post">
+<input type="text" name="answerSix">
+<input type="submit" value="check">
+</form><br>
+
 <div class="parallax"></div>
 
 ### 6. Visualisation
@@ -309,7 +413,7 @@ df.short
 In Anscombe, F. J. (1973). "Graphs in Statistical Analysis" was presented the next sets of data:
 
 ```{r}
-quartet <- read.csv("https://goo.gl/KuuzYy")
+quartet <- read.csv("https://raw.githubusercontent.com/LingData2019/LingData/master/data/anscombe.s.quartet.csv")
 quartet
 ```
 
@@ -340,7 +444,7 @@ quartet %>%
 In [Matejka and Fitzmaurice (2017) "Same Stats, Different Graphs"](https://www.autodeskresearch.com/sites/default/files/SameStats-DifferentGraphs.pdf) was presented the next sets of data:
 
 ```{r, message= FALSE}
-datasaurus <- read_tsv("https://goo.gl/gtaunr")
+datasaurus <- read_tsv("https://raw.githubusercontent.com/LingData2019/LingData/master/data/datasaurus.tsv")
 head(datasaurus)
 ```
 
@@ -447,20 +551,16 @@ homo %>%
 
 Lets use the frequency dictionary for Russian
 ```{r, cache= TRUE}
-freq <- read.csv("https://goo.gl/TlX7xW", sep = "\t")
+freq <- read_csv("https://raw.githubusercontent.com/LingData2019/LingData/master/data/freqrnc2011_1000.csv")
 freq %>%
-  arrange(desc(Freq.ipm.)) %>% 
-  slice(1:200) %>% 
-  ggplot(aes(Rank, Freq.ipm.)) +
+  ggplot(aes(rank, freq_ipm)) +
   geom_point() +
-  xlab("") +
-  ylab("ipm")
+  labs(x = "", y = "ipm")
 
 freq %>%
-  ggplot(aes(1:52138, Freq.ipm.))+
+  ggplot(aes(1:1000, freq_ipm))+
   geom_point()+
-  xlab("")+
-  ylab("ipm")+
+  labs(x = "", y = "ipm")
   scale_y_log10()
 ```
 
@@ -675,3 +775,66 @@ homo %>%
   facet_wrap(~orientation)+
   theme_bw()
 ```
+
+<script>
+function validateFormOne() {
+    var x = document.forms["FormOne"]["answerOne"].value;
+    if (x != "27") {
+        alert("I have a different answer...");
+        return false;
+    } else {
+        alert("Good! Everything is correct.");
+        return false;
+    }
+}
+function validateFormTwo() {
+    var x = document.forms["FormTwo"]["answerTwo"].value;
+    if (x != "2") {
+        alert("I have a different answer...");
+        return false;
+    } else {
+        alert("Good! Everything is correct.");
+        return false;
+    }
+}
+function validateFormThree() {
+    var x = document.forms["FormThree"]["answerThree"].value;
+    if (x != "1185") {
+        alert("I have a different answer...");
+        return false;
+    } else {
+        alert("Good! Everything is correct.");
+        return false;
+    }
+}
+function validateFormFour() {
+    var x = document.forms["FormFour"]["answerFour"].value;
+    if (x != "3077") {
+        alert("I have a different answer...");
+        return false;
+    } else {
+        alert("Good! Everything is correct.");
+        return false;
+    }
+}
+function validateFormFive() {
+    var x = document.forms["FormFive"]["answerFive"].value;
+    if (x != "3344") {
+        alert("I have a different answer...");
+        return false;
+    } else {
+        alert("Good! Everything is correct.");
+        return false;
+    }
+}
+function validateFormSix() {
+    var x = document.forms["FormSix"]["answerSix"].value;
+    if (x != "4291") {
+        alert("I have a different answer...");
+        return false;
+    } else {
+        alert("Good! Everything is correct.");
+        return false;
+    }
+}
+</script>
