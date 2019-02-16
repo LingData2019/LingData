@@ -219,7 +219,7 @@ homo %>%
 ```
 
 #### Task 3
-How many diamonds with `Fair` and `Good` cut and color `G`?
+How many diamonds with `Fair` and `Good` `cut` have `color` `G`?
 
 ```{r, include=FALSE}
 diamonds %>% 
