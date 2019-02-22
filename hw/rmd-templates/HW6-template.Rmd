@@ -18,8 +18,6 @@ There are several tasks on
 * data manipulation with `dplyr` (if you have any problems see [this](https://www.datacamp.com/courses/dplyr-data-manipulation-r-tutorial) and [this](https://www.datacamp.com/courses/joining-data-in-r-with-dplyr) courses)
 * data visualisation with `ggplot2` (if you have any problems see [this course](https://www.datacamp.com/courses/data-visualization-with-ggplot2-1))
 
-.Rmd template for this homework is [here](https://raw.githubusercontent.com/LingData2019/LingData/master/hw/rmd-templates/HW6-template.Rmd).
-
 ### 1.
 These datasets contain the results of the experiment that evaluates the inter speaker variation in noun class assignment among speakers of the Zilo dialect of Andi (a Nakh-Daghestanian language). In Zilo there are two classes for inanimate objects with no obvious semantic distinction between them.
 
@@ -40,51 +38,16 @@ There are two datasets:
 Calculate the ratio of b-words ($\frac{b\text{-words}}{b\text{-words}+r\text{-words}}$) for each sex and stimulus source and visualise it with the following graph (it is possible to do within one pipe).
 
 ```{r}
-df_d <- read_csv("https://raw.githubusercontent.com/LingData2019/LingData/master/data/zilo_class_experiment_data.csv") 
-df_i <- read_csv("https://raw.githubusercontent.com/LingData2019/LingData/master/data/zilo_class_experiment_informants.csv") 
-df_d %>% 
-  gather(s_id, class, `1`:`16`) %>% 
-  mutate(s_id = as.numeric(s_id)) %>% 
-  left_join(df_i) %>% 
-  count(s_id, sex, stimulus_source, class) %>% 
-  spread(class, n) %>% 
-  group_by(sex, stimulus_source) %>% 
-  summarise(ratio = mean(b/(b+r))) %>% 
-  ggplot(aes(sex, ratio, color = stimulus_source))+
-  geom_point()+
-  labs(title = "Ratio of b-words",
-       y = "mean ratio",
-       caption = "data from [Moroz, Verhees 2019]")
 ```
 
 ### 1.2
 Calculate the ratio of b-words ($\frac{b\text{-words}}{b\text{-words}+r\text{-words}}$) for each stimulus and visualise ratio distribution using `geom_histogram`:
 ```{r}
-df_d %>% 
-  gather(s_id, class, `1`:`16`) %>% 
-  mutate(s_id = as.numeric(s_id)) %>% 
-  left_join(df_i) %>% 
-  count(stimulus_source, translation_en, class) %>% 
-  spread(class, n, fill = 0) %>% 
-  mutate(ratio = b/(b+r)) %>% 
-  ggplot(aes(ratio))+
-  geom_histogram()+
-  labs(title = "Distribution of different ratios",
-       caption = "data from [Moroz, Verhees 2019]")
 ```
 
 ### 1.3
 Calculate the ratio of b-words ($\frac{b\text{-words}}{b\text{-words}+r\text{-words}}$) for each stimulus. Which stimulae have value between 0.5 and 0.6?
 ```{r, eval = FALSE}
-df_d %>% 
-  gather(s_id, class, `1`:`16`) %>% 
-  mutate(s_id = as.numeric(s_id)) %>% 
-  left_join(df_i) %>% 
-  count(stimulus_source, translation_en, class) %>% 
-  spread(class, n, fill = 0) %>% 
-  mutate(rate = b/(b+r)) %>% 
-  filter(rate > 0.5,
-         rate < 0.6)
 ```
 
 ### 2.
@@ -97,15 +60,6 @@ Data are [here](http://math-info.hse.ru/f/2018-19/ling-data/icelandic.csv).
 Calculate a 95% confidence interval and a mean vowel duration (variable `vowel.dur`) for different contexts (variable `aspiration`) for all speakers (variable `speaker`) and visualise them using `geom_pointrange`.
 
 ```{r}
-df <- read_csv("http://math-info.hse.ru/f/2018-19/ling-data/icelandic.csv")
-
-df %>% 
-  group_by(speaker, aspiration) %>% 
-  summarise(mean = mean(vowel.dur),
-            ci = 1.96 * sd(vowel.dur)/sqrt(n())) %>% 
-  ggplot(aes(speaker, mean, color = aspiration, ymin = mean - ci, ymax = mean + ci))+
-  geom_point()+
-  geom_pointrange()
 ```
 
 
