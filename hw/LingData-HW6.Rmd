@@ -1,0 +1,106 @@
+---
+title: "HW 6"
+author: "Olga Lyashevskaya, George Moroz, Alla Tambovtseva and Ilya Schurov"
+output:
+  html_document: default
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+library(tidyverse)
+theme_set(theme_bw())
+```
+
+There are several tasks on
+
+* data manipulation with `dplyr` (if you have any problems see [this](https://www.datacamp.com/courses/dplyr-data-manipulation-r-tutorial) and [this](https://www.datacamp.com/courses/joining-data-in-r-with-dplyr) courses)
+* data visualisation with `ggplot2` (if you have any problems see [this course](https://www.datacamp.com/courses/data-visualization-with-ggplot2-1))
+
+### 1.
+These datasets contain the results of the experiment that evaluates the inter speaker variation in noun class assignment among speakers of the Zilo dialect of Andi (a Nakh-Daghestanian language). In Zilo there are two classes for inanimate objects with no obvious semantic distinction between them.
+
+There are two datasets:
+
+* zilo_class_experiment_data.csv
+  * w_id --- word id
+  * stimulus --- stimuli word in Zilo
+  * translation_en --- translation to English
+  * stimulus_source --- the source of the stimulus: native or loan
+  * 1 ... 16 --- columns that contain answers of 16 speakers of Zilo: `b` or `r` (class markers)
+* zilo_class_experiment_informants.csv
+  * s_id --- speaker id (corresponds to numbers in the previous dataset)
+  * sex --- sex of the speaker
+  * age_2017 --- age of the speaker on the moment of the interview
+
+### 1.1
+Calculate the ratio of b-words ($\frac{b\text{-words}}{b\text{-words}+r\text{-words}}$) for each sex and stimulus source and visualise it with the following graph (it is possible to do within one pipe).
+
+```{r}
+df_d <- read_csv("/home/agricolamz/work/materials/2019_HSE_m_R/data/zilo_class_experiment_data.csv") 
+df_i <- read_csv("/home/agricolamz/work/materials/2019_HSE_m_R/data/zilo_class_experiment_informants.csv") 
+df_d %>% 
+  gather(s_id, class, `1`:`16`) %>% 
+  mutate(s_id = as.numeric(s_id)) %>% 
+  left_join(df_i) %>% 
+  count(s_id, sex, stimulus_source, class) %>% 
+  spread(class, n) %>% 
+  group_by(sex, stimulus_source) %>% 
+  summarise(ratio = mean(b/(b+r))) %>% 
+  ggplot(aes(sex, ratio, color = stimulus_source))+
+  geom_point()+
+  labs(title = "Ratio of b-words",
+       y = "mean ratio",
+       caption = "data from [Moroz, Verhees 2019]")
+```
+
+### 1.2
+Calculate the ratio of b-words ($\frac{b\text{-words}}{b\text{-words}+r\text{-words}}$) for each stimulus and visualise ratio distribution using `geom_histogram`:
+```{r}
+df_d %>% 
+  gather(s_id, class, `1`:`16`) %>% 
+  mutate(s_id = as.numeric(s_id)) %>% 
+  left_join(df_i) %>% 
+  count(stimulus_source, translation_en, class) %>% 
+  spread(class, n, fill = 0) %>% 
+  mutate(ratio = b/(b+r)) %>% 
+  ggplot(aes(ratio))+
+  geom_histogram()+
+  labs(title = "Distribution of different ratios",
+       caption = "data from [Moroz, Verhees 2019]")
+```
+
+### 1.3
+Calculate the ratio of b-words ($\frac{b\text{-words}}{b\text{-words}+r\text{-words}}$) for each stimulus. Which stimulae have value between 0.5 and 0.6?
+```{r, eval = FALSE}
+df_d %>% 
+  gather(s_id, class, `1`:`16`) %>% 
+  mutate(s_id = as.numeric(s_id)) %>% 
+  left_join(df_i) %>% 
+  count(stimulus_source, translation_en, class) %>% 
+  spread(class, n, fill = 0) %>% 
+  mutate(rate = b/(b+r)) %>% 
+  filter(rate > 0.5,
+         rate < 0.6)
+```
+
+### 2.
+
+This dataset is based on (Coretta 2017, https://goo.gl/NrfgJm). This dissertation dealt with the relation between vowel duration and aspiration in consonants. Author carried out a data collection with 5 natives speakers of Icelandic. Then he extracted the duration of vowels followed by aspirated versus non-aspirated consonants. Check out whether vowels before aspirated consonants (like in Icelandic takka ‘key’ [tʰaʰka]) are signiﬁcantly shorter than vowels followed by non-aspirated consonants (like in kagga ‘barrel’ [kʰakka]).
+
+Data are [here](http://math-info.hse.ru/f/2018-19/ling-data/icelandic.csv).
+
+### 2.1 
+Calculate 95% confidence interval for mean vowel duration (variable vowel.dur) followed by aspirated vowels (variable aspiration) for all speakers (variable speaker) and visualise them using `geom_pointrange`.
+
+```{r}
+df <- read_csv("http://math-info.hse.ru/f/2018-19/ling-data/icelandic.csv")
+
+df %>% 
+  group_by(speaker, variable vowel.dur, variable aspiration) %>% 
+  summarise()
+```
+
+
+
