@@ -13,7 +13,7 @@ library(tidyverse)
 theme_set(theme_bw())
 ```
 
-There are several tasks on
+In this assignment there are several tasks on
 
 * data manipulation with `dplyr` (if you have any problems see [this](https://www.datacamp.com/courses/dplyr-data-manipulation-r-tutorial) and [this](https://www.datacamp.com/courses/joining-data-in-r-with-dplyr) courses)
 * data visualisation with `ggplot2` (if you have any problems see [this course](https://www.datacamp.com/courses/data-visualization-with-ggplot2-1))
@@ -21,7 +21,7 @@ There are several tasks on
 .Rmd template for this homework is [here](https://raw.githubusercontent.com/LingData2019/LingData/master/hw/rmd-templates/HW6-template.Rmd).
 
 ### 1.
-These datasets contain the results of the experiment that evaluates the inter speaker variation in noun class assignment among speakers of the Zilo dialect of Andi (a Nakh-Daghestanian language). In Zilo there are two classes for inanimate objects with no obvious semantic distinction between them.
+These datasets contain the results of the experiment that evaluates the inter speaker variation in noun class assignment among speakers of the Zilo dialect of Andi (a Nakh-Daghestanian language). In Zilo there are two classes (b-class and r-class) for inanimate objects with no obvious semantic distinction between them.
 
 There are two datasets:
 
