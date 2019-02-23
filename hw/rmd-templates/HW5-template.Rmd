@@ -1,5 +1,5 @@
 ---
-title: "HW 6"
+title: "HW 5"
 author: "Olga Lyashevskaya, George Moroz, Alla Tambovtseva and Ilya Schurov"
 output:
   html_document: default
@@ -20,7 +20,7 @@ In this assignment there are several tasks on
 
 All functions that you need are covered in [class material](https://lingdata2019.github.io/LingData/Lec_6_tidyverse.html). If you have need more detailed description, you can see [this](https://www.datacamp.com/courses/dplyr-data-manipulation-r-tutorial) and [this](https://www.datacamp.com/courses/joining-data-in-r-with-dplyr) courses on `dplyr` and [this course](https://www.datacamp.com/courses/data-visualization-with-ggplot2-1) on `ggplot2`.
 
-Rmd template for this homework is [here](https://raw.githubusercontent.com/LingData2019/LingData/master/hw/rmd-templates/HW6-template.Rmd).
+Rmd template for this homework is [here](https://raw.githubusercontent.com/LingData2019/LingData/master/hw/rmd-templates/HW5-template.Rmd).
 
 ## 1. Noun class assignment
 These datasets contain the results of the experiment that evaluates the inter speaker variation in noun class assignment among speakers of the Zilo dialect of Andi (a Nakh-Daghestanian language). In Zilo there are two classes (b-class and r-class) for inanimate objects with no obvious semantic distinction between them.
