@@ -93,7 +93,7 @@ Source: UCLA Academic Technology Services.
 Let's load data first:
 
 ```{r}
-educ <- read.csv("education.csv")
+educ <- read.csv("https://raw.githubusercontent.com/LingData2019/LingData/master/data/education.csv")
 ```
 
 And load `tidyverse` package and install `GGally` package that is a useful extension
@@ -198,10 +198,11 @@ $H_1$: the true correlation coefficient is not 0.
 Should we reject our null hypothesis at the 5% significance level? Make conclusions.
 
 3. `Multiple R-squared` is $R^2$, a coefficient of determination that shows what share of the reality our model explains. A more formal way to interpret it: it shows a share of variance of a dependent variable that is explained by an independent one.
+If we have a simple paired regression, $R^2$ is just a square of a correlation coefficient between these two variables.
 
 ### Part 4: try yourselves
 
-Here you are suggested to work with a dataset on Chekhov's stories (`chekhov.csv`).
+Here you are suggested to work with a dataset on Chekhov's stories (`chekhov.csv`, [link](https://raw.githubusercontent.com/LingData2019/LingData/master/data/chekhov.csv)).
 
 **Variables**
 
