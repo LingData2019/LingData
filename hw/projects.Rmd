@@ -1,6 +1,8 @@
 ---
-title: "Research Project: Data & Analysis, Paper & Presentation"
-output: html_document
+title: 'Research Project: Data & Analysis, Paper & Presentation'
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -17,22 +19,22 @@ MA course **Linguistic data: quantitative analysis and visualization, HSE, Mosco
 
 In the project, the students are supposed to explore a linguistic phenomenon in written, oral, or sign speech, in any natural language. This can be:  
 
-- a corpus-based study   
-    - based on a monolingual corpus  
-    - based on a parallel corpus or any other bi- or multilingual source  
-- experimental research:   
-    - psycholinguistic, neurolinguistic experiments  
-    - experimental phonetics  
-    - fieldwork  
-    - sociolinguistic surveys  
+- a corpus-based study:
+    - based on a monolingual corpus
+    - based on a parallel corpus or any other bi- or multilingual source
+- experimental research:
+    - psycholinguistic, neurolinguistic experiments
+    - experimental phonetics
+    - fieldwork
+    - sociolinguistic surveys
 
 Just to give you an idea, the project can be focused on the behaviour of some rival forms such as: 
 
-- synonyms  
-- two or more grammatical forms (e.g. two kinds of comparatives in Russian: _bystree_ and _pobystree_)  
-- rival word formation models  
-- rival syntactic constructions, word order (e.g. _give him a book_ vs. _give a book to your sister_)   
-- rival pronunciation models (e.g. with or without ellision), etc.  
+- synonyms
+- two or more grammatical forms (e.g. two kinds of comparatives in Russian: _bystree_ and _pobystree_)
+- rival word formation models
+- rival syntactic constructions, word order (e.g. _give him a book_ vs. _give a book to your sister_)
+- rival pronunciation models (e.g. with or without ellision), etc.
 
 Another example could be the use of dialectal forms in urban and rural speech, or the use of a certain grammatical construction by females and males.    
 
@@ -40,10 +42,10 @@ It is important to note that we expect you to think about not just one, but seve
 
 #### Parts of the research
 
-1. A hypothesis formulated in terms of the subject area. For example, *‘after verbs in this form, such and such a word is more often used than such and such’*. Or *‘people who grew up in the village use dialect forms more actively than those who grew up in the city’*, etc. It would be nice if there is any universal justification for why this hypothesis is plausible.  
-2. Research design: what data you need to test the hypothesis, what are your formal hypotheses (statistically formulated: null hypothesis, alternative), what is your model (i.e. regression model, etc.), which statistical tools will you use, etc.  
-3. Description of the data collection method. 
-4. Collected data, their description.  
+1. A hypothesis formulated in terms of the subject area. For example, *‘after verbs in this form, such and such a word is more often used than such and such’*. Or *‘people who grew up in the village use dialect forms more actively than those who grew up in the city’*, etc. It would be nice if there is any universal justification for why this hypothesis is plausible.
+2. Research design: what data you need to test the hypothesis, what are your formal hypotheses (statistically formulated: null hypothesis, alternative), what is your model (i.e. regression model, etc.), which statistical tools will you use, etc.
+3. Description of the data collection method.
+4. Collected data, their description.
 5. Exploratory data analysis, descriptive statistics and visualization.
 6. Results of applying statistical tests and modeling, p-values, regression coefficients, etc.
 7. The results of the study, formulated in terms of the subject area.
@@ -58,16 +60,16 @@ You have to demonstrate robustness (or lack of it) of your conclusions by using 
 
 #### Research paper  
 The students prepare the final project in a written form as an electronic
-￼document (Rmarkdown, also knitted as pdf) that include the following parts: 
+ document (Rmarkdown, also knitted as pdf) that include the following parts: 
 
-- Research objectives and hypothesis to be tested.  
-- Description of input data: features and values, descriptive statistics, data visualisation.  
-- Discussion of the methods of analysis and their applicability.  
-- Obtained results and their linguistic interpretation. Comparison and discussion of the ￼￼￼results produced by different models.
+- Research objectives and hypothesis to be tested.
+- Description of input data: features and values, descriptive statistics, data visualisation.
+- Discussion of the methods of analysis and their applicability.
+- Obtained results and their linguistic interpretation. Comparison and discussion of the    results produced by different models.
 - Optional section: previous research on the topic, comparison of current results with previous studies.
-- R code used for the analysis.[^2] 
+- R code used for the analysis.[^2]
 - Annotated data (file in repository in the .csv format, the paper contains a link to this file).
-- Experimental survey questionaries, if applicable (files in repository in the .csv format, the paper contains a link to this file).  
+- Experimental survey questionaries, if applicable (files in repository in the .csv format, the paper contains a link to this file). 
 
 Language under analysis: any natural language  
 
@@ -102,8 +104,7 @@ Examination grades: 500 points or higher: 10 (‘excellent’), 200 points: 4 (�
 
 [Examples of project papers](https://agricolamz.github.io/2018-MAG_R_course/projects-previous-case-studies.html) (of different quality, for orientation only).
 
-#### Notes ￼
 [^1]: Other research methodologies can be dicussed with instructors. We are ok with the re-use of your previous research but only if it demonstrates some "added" value in terms of statistical analysis, visualization, the increment of the dataset size and variables. If you re-use some previous research, please state it clearly and explain what was done before and what is done as a part of this course project. This course paper can be done in preparation for your term paper / MA thesis. (NB for computational linguists: We usually don't accept projects that comprises purely computational linguistics/NLP research such as data retrieval or NLP evaluation. However, we encourage you to use your skills at the stage of data collection and pre-processing, if needed).
 
 [^2]: The use of language R is one of the criteria of evaluation. If you use any statistical tool other than R in your project, please discuss it with the examiner. Python, C, etc. scripts used to collect and pre-process your data can also be provided, but are not subject of evaluation.  
-￼
+ 
