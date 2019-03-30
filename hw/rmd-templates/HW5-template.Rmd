@@ -127,7 +127,7 @@ Your table should look like this:
 ```
 
 #### 1.1.5 Find ratio
-Now add a column called `ratio` that contains a ratio of `r`-words among all words for each row. Use `mutate`.
+Now add a column called `ratio` that contains a ratio of `b`-words among all words for each row. Use `mutate`.
 
 
 ```{r}
