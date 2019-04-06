@@ -186,7 +186,22 @@ print("These are the confidence interval values:")
 confint(load.glm4)
 ```
 If a 95% confidence interval contains zero, this indicates that the corresponding effect is not significant.
+
+We can plot this coefficients with confidence intervals at the same time. To do this we need the library `jtools` that requires `ggstance`:
+
+```{r, eval=FALSE}
+install.packages("ggstance")
+install.packages("jtools")
+```
+
+
+```{r}
+library(jtools)
+plot_summs(load.glm4)
+```
+
 You can also use `exp(confint(...))` to obtain simple odds ratios. The confidence interval of a significant effect based on simple odds ratios should not include 1.
+
 
 ### 2.10 Report the odds of success for each predictor variable.
 Use exp(model_name$coefficients)
