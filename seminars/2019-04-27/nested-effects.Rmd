@@ -33,9 +33,12 @@ summary(MLexamp.8)
 MLexamp.8prime <- lmer(extro ~ open + agree + social + (1 | school/class), data = lmm.data)
 summary(MLexamp.8prime)
 ```
+```{r}
+lmm.data %>% mutate(school_class=paste(school, class, sep="_")) -> lmm.data_with_interaction
+lmm.data_with_interaction
+```
 
 ```{r}
-MLexamp.9 <- lmer(extro ~ open + agree + social + (1 | school) + (1 | school_class), data=lmm.data %>% 
-                     mutate(school_class=paste(school, class, sep="_")))
+MLexamp.9 <- lmer(extro ~ open + agree + social + (1 | school) + (1 | school_class), data=lmm.data_with_interaction)
 summary(MLexamp.9)
 ```
