@@ -1,8 +1,8 @@
 ---
 title: "Lab12. Decision Trees and Forests. Variable importance"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -31,11 +31,11 @@ Fit a CART model, using ctree() function, predicting v.elision variable by all o
 1.2 Visualize a model using print() function. Which split have a statistic 14.01?
 In the party package, print view shows a stop criterion (1 - p-value, not smaller than 0.95 by default), t-statistic and the number of observations in each terminal node (weights).
 
-1.3 Predict a value of v.elision for word with a root "попеч" in a third group, in a strong position.
+1.3 Predict a value of v.elision for word with a root "popech" in a third group, in a strong position.
 Fit a cforest model using additional argument controls=cforest_unbiased(ntree=1000, mtry=3).
 
-1.4 Predict a value of v.elision for word with a root "попеч" in a third group, in a strong position using `cforest` model.
-You need to add an argument OOB=TRUE. e. g. yes
+1.4 Predict a value of v.elision for word with a root "popech" in a third group, in a strong position using `cforest` model.
+You need to add an argument OOB=TRUE. e. g. yes.
 
 1.5 Calculate a variable importance for a group variable in the random forest model using varimp() function.
 
@@ -48,7 +48,7 @@ plot(fit)
 print(fit)
 plot(fit, type = "simple") # a simplified view
 predict(fit, df[45,-1], response = TRUE)
-fit2 <- cforest(v.elision~., data = df, control=cforest_unbiased(ntree=1000, mtry=2))
+fit2 <- cforest(v.elision~., data = df, control=cforest_unbiased(ntree=1000, mtry=3))
 predict(fit2, df[45,-1],OOB=TRUE)
 vi <- as.data.frame(sort(varimp(fit2), decreasing=TRUE))
 vi
@@ -73,7 +73,8 @@ verb, where the s is the second singular inflection (eg, tu tienes, el tienes)
 determiner, where s is plural marked on a determiner (eg, los, las)
 adjective, where s is a nominal plural agreeing with the noun (eg, buenos)
 noun, where s marks a plural noun (eg, amigos)
-Fit the CART model predicting s.deletion by phonetic environment and social class
+
+Fit the CART model predicting s.deletion by phonetic environment and social class.
 
 Data: [https://raw.githubusercontent.com/LingData2019/LingData/master/data/cedergren73.csv](https://raw.githubusercontent.com/LingData2019/LingData/master/data/cedergren73.csv)
 
@@ -104,18 +105,18 @@ Pavel Duryagin ran an experiment on perception of vowel reduction in Russian lan
 * `duration` - duration of the vowel in the stimuly (in milliseconds, ms)  
 * `time2` - reaction time 2  
 * `f1`, `f2`, `f3` - the 1st, 2nd and 3rd formant of the vowel measured in Hz  
-* `vowel` - vowel classified according the 3-fold classification (A - a under stress, a - a/o as in the first syllable before the stressed one, y (stands for shva) - a/o as in the second etc. syllable before the stressed one or after the stressed syllable, cf. g[y]g[a]t[A]l[y] gogotala `guffawed’).
+* `vowel` - vowel classified according the 3-fold classification (A - a under stress, a - a/o as in the first syllable before the stressed one, y (stands for shva) - a/o as in the second etc. syllable before the stressed one or after the stressed syllable, cf. g[y]g[a]t[A]l[y] gogotala `guffawed').
 
-The dataset is available https://raw.githubusercontent.com/agricolamz/2018-MAG_R_course/master/data/duryagin_ReductionRussian.txt.
+The dataset is available at [](https://raw.githubusercontent.com/agricolamz/2018-MAG_R_course/master/data/duryagin_ReductionRussian.txt).
 
-Fit the CART model predicting vowel by f1 and f2
+Fit the CART model predicting vowel by f1 and f2.
 
 3.1 Visualize a model using plot() function. What is the number of observation in node 9?
 
-3.2 Predict a value of vowel for sound with f1 = 600, f2 = 1300?
+3.2 Predict a value of vowel for sound with f1 = 600, f2 = 1300.
 Fit a cforest model using additional argument controls=cforest_unbiased(ntree=100, mtry=2).
 
-3.3 Predict a value of vowel for sound with f1 = 600, f2 = 1300?
+3.3 Predict a value of vowel for sound with f1 = 600, f2 = 1300.
 You need to add an argument OOB=TRUE. 
 
 3.4 Calculate a variable importance for the random forest model using varimp() function. Which of the variable is more important?
