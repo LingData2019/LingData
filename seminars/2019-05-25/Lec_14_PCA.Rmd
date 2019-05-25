@@ -11,7 +11,7 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(message=FALSE, echo = FALSE)
+knitr::opts_chunk$set(message=FALSE, echo = FALSE, fig.width=12)
 ```
 
 ```{r, include=FALSE}
@@ -221,14 +221,37 @@ Visualisation from package  `ggfortify`:
 
 ```{r}
 library(ggfortify)
-autoplot(PCA,
-         shape = FALSE,
-         loadings = TRUE,
-         label = TRUE,
-         loadings.label = TRUE)
+p1 <- autoplot(PCA,
+               shape = FALSE,
+               loadings = TRUE,
+               label = TRUE,
+               loadings.label = TRUE)
+p1
 ```
 
 Numbers on the graph are chapters, red lines are  old coordinate axes. This kind of graphs are called **biplots**. Angle between old axes represent correlation between variables: cosine of this angle actually correspond to Pearson's correlation coefficient.
+
+### Lets transpose
+
+```{r}
+wodehouse <- read.csv("https://raw.githubusercontent.com/LingData2019/LingData/master/data/wodehouse_pca.csv")
+w2 <- t(wodehouse[,-1])
+colnames(w2) <- wodehouse$chapter
+PCA <- prcomp(w2)
+PCA
+summary(PCA)
+
+p2 <- autoplot(PCA,
+               shape = FALSE,
+               loadings = TRUE,
+               label = TRUE,
+               loadings.label = TRUE)
+p2
+
+library(gridExtra)
+grid.arrange(p1, p2, ncol = 2)
+```
+
 
 ### Summary:
 
