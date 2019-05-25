@@ -253,6 +253,34 @@ grid.arrange(p1, p2, ncol = 2)
 ```
 
 
+### Scale
+```{r}
+wodehouse <- read.csv("https://raw.githubusercontent.com/LingData2019/LingData/master/data/wodehouse_pca.csv")
+wodehouse_2 <- wodehouse[,-1]
+rownames(wodehouse_2) <- wodehouse[, 1] # this is names
+PCA <- prcomp(wodehouse_2, scale. = TRUE)
+p3 <- autoplot(PCA,
+               shape = FALSE,
+               loadings = TRUE,
+               label = TRUE,
+               loadings.label = TRUE)
+w2 <- t(wodehouse[,-1])
+colnames(w2) <- wodehouse$chapter
+PCA <- prcomp(w2, scale. = TRUE)
+PCA
+summary(PCA)
+
+p4 <- autoplot(PCA,
+               shape = FALSE,
+               loadings = TRUE,
+               label = TRUE,
+               loadings.label = TRUE)
+
+library(gridExtra)
+grid.arrange(p3, p4, ncol = 2)
+```
+
+
 ### Summary:
 
 * If the cumulative proportion of explained variance for some PCs is high, we can change coordinate system and start predicting variables' values using less variables.
